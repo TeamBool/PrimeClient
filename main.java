@@ -5,9 +5,10 @@ public class main {
         /*String primes = prepare.primesString(500);
         System.out.println(primes);
         System.out.println(primes.length());*/
-        IntArray array = prepare.primesArray(1000);
-        System.out.println(array.getItem().get(0));
-        /*Vector vec = prepare.newWorker(2000);
-        System.out.println(vec.toString());*/
+        IntArray array = prepare.primesArray(100);
+        for(int x : array.item){
+            System.out.println(x);
+        }
+        System.out.println(prepare.primesString(2000));
     }
 }
