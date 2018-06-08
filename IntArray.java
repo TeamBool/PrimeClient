@@ -63,4 +63,7 @@ public class IntArray {
         return this.item;
     }
 
+    public void addItem(int i){
+        this.item.add(i);
+    }
 }
