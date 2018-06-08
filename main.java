@@ -2,7 +2,15 @@ import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) {
-        PrepareService service = new PrepareService();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("HostURL (default: http://localhost:8080/services): ");
+        String url = scanner.nextLine();
+        PrepareService service;
+        if (url.isEmpty()) {
+            service = new PrepareService();
+        } else {
+            service = new PrepareService(url);
+        }
         Prepare prepare = service.getPreparePort();
         userInterface(prepare);
     }

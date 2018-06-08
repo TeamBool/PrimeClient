@@ -20,7 +20,7 @@ public class PrepareService
         extends Service
 {
 
-    private final static URL PREPARESERVICE_WSDL_LOCATION;
+    private static URL PREPARESERVICE_WSDL_LOCATION;
     private final static WebServiceException PREPARESERVICE_EXCEPTION;
     private final static QName PREPARESERVICE_QNAME = new QName("default", "PrepareService");
 
@@ -38,6 +38,15 @@ public class PrepareService
 
     public PrepareService() {
         super(__getWsdlLocation(), PREPARESERVICE_QNAME);
+    }
+
+    public PrepareService(String url) {
+        super(__getWsdlLocation(), PREPARESERVICE_QNAME);
+        try {
+            PREPARESERVICE_WSDL_LOCATION = new URL(url + "?wsdl");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 
     public PrepareService(WebServiceFeature... features) {
