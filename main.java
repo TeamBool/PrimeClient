@@ -1,18 +1,33 @@
 import java.util.Scanner;
 
 public class main {
+    public static String url = "http://localhost:8080/services";
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("HostURL (default: http://localhost:8080/services): ");
-        String url = scanner.nextLine();
-        PrepareService service;
-        if (url.isEmpty()) {
-            service = new PrepareService();
-        } else {
-            service = new PrepareService(url);
-        }
-        Prepare prepare = service.getPreparePort();
-        userInterface(prepare);
+        boolean connected = false;
+        do {
+            Scanner scanner = new Scanner(System.in);
+            String url;
+            System.out.println("HostURL (default: http://localhost:8080/services): ");
+            url = scanner.nextLine();
+            if (!url.isEmpty()) {
+                main.url = url;
+            }
+            try {
+                PrepareService service;
+                service = new PrepareService();
+                Prepare prepare = service.getPreparePort();
+                userInterface(prepare);
+                connected = true;
+            } catch (javax.xml.ws.WebServiceException e) {
+                System.out.println(e.getMessage());
+                System.out.println("No connection available. Please try again!");
+                connected = false;
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+                System.out.println("No connection available. Please try again!");
+                connected = false;
+            }
+        } while (!connected);
     }
 
     public static int getN(){

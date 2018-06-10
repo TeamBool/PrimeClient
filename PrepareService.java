@@ -15,7 +15,8 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  *
  */
-@WebServiceClient(name = "PrepareService", targetNamespace = "default", wsdlLocation = "http://localhost:8080/services?wsdl")
+//@WebServiceClient(name = "PrepareService", targetNamespace = "default", wsdlLocation = "http://localhost:8080/services?wsdl")
+@WebServiceClient(name = "PrepareService", targetNamespace = "default")
 public class PrepareService
         extends Service
 {
@@ -28,7 +29,7 @@ public class PrepareService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:8080/services?wsdl");
+            url = new URL(main.url + "?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -40,14 +41,14 @@ public class PrepareService
         super(__getWsdlLocation(), PREPARESERVICE_QNAME);
     }
 
-    public PrepareService(String url) {
+   /* public PrepareService(String url) {
         super(__getWsdlLocation(), PREPARESERVICE_QNAME);
         try {
             PREPARESERVICE_WSDL_LOCATION = new URL(url + "?wsdl");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     public PrepareService(WebServiceFeature... features) {
         super(__getWsdlLocation(), PREPARESERVICE_QNAME, features);
